@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 30 10% 15%;
+    --card: 40 30% 95%;
+    --card-foreground: 30 10% 15%;
+    --primary: 18 45% 45%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 30 15% 85%;
+    --secondary-foreground: 30 10% 20%;
+    --muted: 30 10% 90%;
+    --muted-foreground: 30 8% 45%;
+    --accent: 35 40% 92%;
+    --accent-foreground: 30 10% 20%;
+    --border: 30 15% 88%;
+    --input: 30 15% 88%;
+    --ring: 18 45% 45%;
+    --radius: 0.25rem;
+
+    --terracotta: 18 45% 45%;
+    --terracotta-light: 18 45% 55%;
+    --warm-cream: 40 33% 97%;
+    --warm-taupe: 30 15% 75%;
+    --charcoal: 30 10% 15%;
+    --linen: 35 25% 93%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern", "liga";
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer components {
+  /* Larguras de conteúdo usadas em todas as seções */
+  .container-full {
+    @apply mx-auto w-full max-w-[1600px] px-6;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-4xl px-6;
+  }
+
+  /* Preenchimento que sobe de baixo no hover do botão */
+  .btn-premium {
+    @apply relative overflow-hidden;
+  }
+
+  .btn-premium::after {
+    content: "";
+    @apply absolute inset-0 translate-y-full bg-white/10 transition-transform duration-500;
+  }
+
+  .btn-premium:hover::after {
+    @apply translate-y-0;
+  }
+}
+
+@layer utilities {
+  .text-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.3em];
+  }
+}
