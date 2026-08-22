@@ -9,11 +9,11 @@
 export const SHOP_URL = "https://wa.me/5500000000000";
 
 export const site = {
-  name: "Stepsunshine",
+  name: "Stesunshine",
   tagline: "Objetos de casa e lifestyle selecionados para uma vida com intenção.",
-  instagramHandle: "@stepsunshine",
+  instagramHandle: "@stesunshine",
   instagramUrl: "https://instagram.com",
-  email: "contato@stepsunshine.com.br",
+  email: "contato@stesunshine.com.br",
   links: {
     shopAll: SHOP_URL,
     about: "#sobre",
