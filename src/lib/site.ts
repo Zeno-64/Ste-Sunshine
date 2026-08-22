@@ -9,11 +9,11 @@
 export const SHOP_URL = "https://wa.me/5500000000000";
 
 export const site = {
-  name: "Maison",
+  name: "Stepsunshine",
   tagline: "Objetos de casa e lifestyle selecionados para uma vida com intenção.",
-  instagramHandle: "@maisonhome",
+  instagramHandle: "@stepsunshine",
   instagramUrl: "https://instagram.com",
-  email: "contato@maison.com",
+  email: "contato@stepsunshine.com.br",
   links: {
     shopAll: SHOP_URL,
     about: "#sobre",

@@ -1,4 +1,4 @@
-# Maison — landing page
+# Stepsunshine — landing page
 
 Landing page de uma página no estilo editorial escandinavo (terracota + creme,
 serifada + sans), reconstruída a partir do template *Maison / Artisan Home &
