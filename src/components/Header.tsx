@@ -35,9 +35,9 @@ export function Header() {
   return (
     <header
       className={cn(
-        // O rosa da marca é a cor do menu superior — branco sobre rosa, como no cartão.
-        "sticky top-0 z-50 bg-rose text-white transition-shadow duration-500",
-        scrolled && "shadow-md shadow-rose/30",
+        // Versão escurecida do rosa da marca, só aqui: passa contraste AA com texto branco.
+        "sticky top-0 z-50 bg-rose-header text-white transition-shadow duration-500",
+        scrolled && "shadow-md shadow-rose-header/30",
       )}
     >
       <nav className="container-full">
@@ -74,7 +74,7 @@ export function Header() {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-white/20 bg-rose">
+        <div className="md:hidden border-t border-white/20 bg-rose-header">
           <div className="container-full py-6 flex flex-col gap-1">
             {navItems.map((item) => (
               <a

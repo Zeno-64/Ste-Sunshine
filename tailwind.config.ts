@@ -41,6 +41,7 @@ export default {
         rose: "hsl(var(--rose))",
         "rose-deep": "hsl(var(--rose-deep))",
         "rose-soft": "hsl(var(--rose-soft))",
+        "rose-header": "hsl(var(--rose-header))",
         cream: "hsl(var(--cream))",
         charcoal: "hsl(var(--charcoal))",
         linen: "hsl(var(--linen))",

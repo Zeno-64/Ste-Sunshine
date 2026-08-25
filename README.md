@@ -53,19 +53,21 @@ export const WHATSAPP_NUMBER = "5511984187982"; // (11) 98418-7982
 Os tokens ficam em `:root` no formato HSL sem `hsl()`, do jeito que o
 shadcn/ui espera:
 
-| token          | valor           | uso                                        |
-| -------------- | --------------- | ------------------------------------------ |
-| `--rose`       | `352 69% 71%`   | rosa exato da marca (#E8828F) — menu, hero |
-| `--rose-deep`  | `352 55% 58%`   | rosa intermediário                         |
-| `--primary`    | `351 54% 46%`   | rosa fechado, para texto pequeno e botões  |
-| `--background` | `350 50% 99%`   | branco levemente rosado                    |
-| `--linen`      | `352 55% 96%`   | fundo das seções alternadas                |
-| `--charcoal`   | `345 14% 18%`   | texto e rodapé                             |
-| `--radius`     | `0.25rem`       | cantos quase retos                         |
+| token            | valor           | uso                                          |
+| ---------------- | --------------- | --------------------------------------------- |
+| `--rose`         | `352 69% 71%`   | rosa exato da marca (#E8828F) — hero, missão  |
+| `--rose-header`  | `350 49% 53%`   | rosa escurecido (#C24C60), só no menu         |
+| `--rose-deep`    | `352 55% 58%`   | rosa intermediário                            |
+| `--primary`      | `351 54% 46%`   | rosa fechado, para texto pequeno e botões     |
+| `--background`   | `350 50% 99%`   | branco levemente rosado                       |
+| `--linen`        | `352 55% 96%`   | fundo das seções alternadas                   |
+| `--charcoal`     | `345 14% 18%`   | texto e rodapé                                |
+| `--radius`       | `0.25rem`       | cantos quase retos                            |
 
-O rosa claro da marca não tem contraste para texto pequeno em branco — por isso
-`--primary` existe como versão fechada do mesmo tom. O menu superior usa o rosa
-exato, como pedido.
+O rosa exato da marca não tem contraste suficiente para texto branco pequeno
+(2,6:1, reprova WCAG AA). Por isso o menu superior usa `--rose-header`, uma
+versão escurecida só para ali; o resto do site mantém o rosa exato. Detalhes e
+justificativa completa em [`docs/decisoes-de-marca.md`](docs/decisoes-de-marca.md).
 
 Fontes: **Cormorant Garamond** (títulos), **Inter** (corpo) e **Great Vibes**
 (assinatura manuscrita, imitando o "Eternizando memórias" do cartão), carregadas

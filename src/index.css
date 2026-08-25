@@ -13,6 +13,10 @@
     --rose: 352 69% 71%;
     --rose-deep: 352 55% 58%;
     --rose-soft: 352 70% 92%;
+    /* Versao escurecida do --rose so para o menu: branco sobre #E8828F da 2.6:1
+       de contraste (reprova AA ate para texto grande). #C24C60 da 4.7:1, passa
+       AA para texto pequeno. Ver docs/decisoes-de-marca.md. */
+    --rose-header: 350 49% 53%;
 
     --background: 350 50% 99%;
     --foreground: 345 14% 18%;
