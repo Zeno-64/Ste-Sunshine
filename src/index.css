@@ -4,29 +4,36 @@
 
 @layer base {
   :root {
-    --background: 40 33% 97%;
-    --foreground: 30 10% 15%;
-    --card: 40 30% 95%;
-    --card-foreground: 30 10% 15%;
-    --primary: 18 45% 45%;
-    --primary-foreground: 40 33% 97%;
-    --secondary: 30 15% 85%;
-    --secondary-foreground: 30 10% 20%;
-    --muted: 30 10% 90%;
-    --muted-foreground: 30 8% 45%;
-    --accent: 35 40% 92%;
-    --accent-foreground: 30 10% 20%;
-    --border: 30 15% 88%;
-    --input: 30 15% 88%;
-    --ring: 18 45% 45%;
+    /* ---------------------------------------------------------------
+       Paleta Ste Sunshine.
+       --rose e o rosa exato da marca (logo/cartao): #E8828F.
+       --primary e uma versao mais fechada do mesmo rosa, usada em texto
+       pequeno, links e botoes, onde o rosa claro nao teria contraste.
+       --------------------------------------------------------------- */
+    --rose: 352 69% 71%;
+    --rose-deep: 352 55% 58%;
+    --rose-soft: 352 70% 92%;
+
+    --background: 350 50% 99%;
+    --foreground: 345 14% 18%;
+    --card: 350 45% 97%;
+    --card-foreground: 345 14% 18%;
+    --primary: 351 54% 46%;
+    --primary-foreground: 350 50% 99%;
+    --secondary: 350 30% 90%;
+    --secondary-foreground: 345 14% 22%;
+    --muted: 348 18% 92%;
+    --muted-foreground: 345 8% 42%;
+    --accent: 352 60% 95%;
+    --accent-foreground: 345 14% 22%;
+    --border: 348 22% 90%;
+    --input: 348 22% 90%;
+    --ring: 352 69% 71%;
     --radius: 0.25rem;
 
-    --terracotta: 18 45% 45%;
-    --terracotta-light: 18 45% 55%;
-    --warm-cream: 40 33% 97%;
-    --warm-taupe: 30 15% 75%;
-    --charcoal: 30 10% 15%;
-    --linen: 35 25% 93%;
+    --cream: 350 50% 99%;
+    --charcoal: 345 14% 18%;
+    --linen: 352 55% 96%;
   }
 
   * {

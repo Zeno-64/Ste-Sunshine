@@ -1,9 +1,29 @@
-import { site } from "@/lib/site";
+import { whatsappFor } from "@/lib/site";
 
-const img = (id: string, w = 1200) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+/**
+ * PLACEHOLDER DE IMAGEM — temporário.
+ *
+ * O acervo de fotos dos ímãs ainda não existe. Em vez de fotos de banco de
+ * imagens (que não têm nada a ver com o produto), cada bloco visual usa um
+ * cartão na cor da marca com o nome da peça. Quando as fotos reais chegarem,
+ * troque o campo `image` pelo caminho do arquivo (ex.: "/fotos/viagens.jpg")
+ * e apague este helper.
+ */
+export function placeholder(label: string) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f2a6b0"/><stop offset="100%" stop-color="#e0748a"/>
+    </linearGradient></defs>
+    <rect width="800" height="1000" fill="url(#g)"/>
+    <text x="400" y="500" text-anchor="middle" fill="#ffffff" fill-opacity="0.9"
+      font-family="Georgia, serif" font-size="54">${label}</text>
+    <text x="400" y="556" text-anchor="middle" fill="#ffffff" fill-opacity="0.55"
+      font-family="Helvetica, Arial, sans-serif" font-size="20" letter-spacing="6">FOTO EM BREVE</text>
+  </svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
 
-export type Collection = {
+export type Occasion = {
   slug: string;
   name: string;
   description: string;
@@ -14,129 +34,113 @@ export type Collection = {
   ratio: "16/9" | "3/4";
 };
 
-export const collections: Collection[] = [
+/** As ocasiões que mais viram ímã — cada card abre o WhatsApp com o tema. */
+export const occasions: Occasion[] = [
   {
-    slug: "lighting",
-    name: "Iluminação",
-    description: "Formas escultóricas que projetam calor e sombra",
-    image: img("photo-1507473885765-e6ed057f782c", 1600),
-    href: site.links.lighting,
+    slug: "viagens",
+    name: "Viagens",
+    description: "O lugar que marcou a sua história, na porta da geladeira",
+    image: placeholder("Viagens"),
+    href: whatsappFor("uma viagem"),
     span: 7,
     ratio: "16/9",
   },
   {
-    slug: "ceramics",
-    name: "Cerâmica",
-    description: "Peças feitas à mão, cada uma com sua imperfeição",
-    image: img("photo-1565193566173-7a0ee3dbe261"),
-    href: site.links.ceramics,
+    slug: "datas-especiais",
+    name: "Datas especiais",
+    description: "Aniversários, casamentos e aquele dia que ninguém esquece",
+    image: placeholder("Datas especiais"),
+    href: whatsappFor("uma data especial"),
     span: 5,
     ratio: "3/4",
   },
   {
-    slug: "furniture",
-    name: "Mobiliário",
-    description: "Madeira maciça e linhas que envelhecem bem",
-    image: img("photo-1555041469-a586c61ea9bc"),
-    href: site.links.furniture,
+    slug: "familia",
+    name: "Família",
+    description: "As pessoas que fazem o coração sorrir todo dia",
+    image: placeholder("Família"),
+    href: whatsappFor("fotos da família"),
     span: 4,
     ratio: "3/4",
   },
   {
-    slug: "textiles",
-    name: "Têxteis",
-    description: "Linho lavado, lã crua e algodão natural",
-    image: img("photo-1616486338812-3dadae4b4ace"),
-    href: site.links.textiles,
+    slug: "pets",
+    name: "Pets",
+    description: "Porque ele também faz parte das melhores memórias",
+    image: placeholder("Pets"),
+    href: whatsappFor("meu pet"),
     span: 4,
     ratio: "3/4",
   },
   {
-    slug: "objects",
-    name: "Objetos & Vasos",
-    description: "Pequenas peças que mudam um ambiente inteiro",
-    image: img("photo-1578500494198-246f612d3b3d"),
-    href: site.links.objects,
+    slug: "conquistas",
+    name: "Conquistas",
+    description: "Formatura, casa nova, primeiro emprego — vitórias que ficam",
+    image: placeholder("Conquistas"),
+    href: whatsappFor("uma conquista"),
     span: 4,
     ratio: "3/4",
   },
   {
-    slug: "seasonal",
-    name: "Coleção Sazonal",
-    description: "Uma curadoria que muda com a estação",
-    image: img("photo-1600210492486-724fe5c67fb0", 1600),
-    href: site.links.seasonal,
+    slug: "lembrancinhas",
+    name: "Lembrancinhas",
+    description: "Kits personalizados para presentear quem esteve com você",
+    image: placeholder("Lembrancinhas"),
+    href: whatsappFor("lembrancinhas de festa"),
     span: 12,
     ratio: "16/9",
   },
 ];
 
-export type Product = {
+export type Step = {
   slug: string;
-  name: string;
-  collection: string;
-  price: string;
+  step: string;
+  title: string;
   description: string;
-  image: string;
-  /** Segunda imagem revelada no hover do card. */
-  hoverImage: string;
-  badge?: string;
-  href: string;
 };
 
-export const products: Product[] = [
+/** Substitui a antiga vitrine de produtos com preço: aqui tudo é sob encomenda. */
+export const steps: Step[] = [
   {
-    slug: "arc-pendant-light",
-    name: "Pendente Arco",
-    collection: "Iluminação",
-    price: "R$ 1.480",
-    description: "Um arco de latão curvado à mão",
-    image: img("photo-1524484485831-a92ffc0de03f"),
-    hoverImage: img("photo-1540932239986-30128078f3c5"),
-    badge: "Destaque",
-    href: site.links.lighting,
+    slug: "escolha",
+    step: "01",
+    title: "Escolha a memória",
+    description:
+      "Aquela foto da viagem, do aniversário ou do dia que você não quer esquecer.",
   },
   {
-    slug: "orb-table-lamp",
-    name: "Luminária Orb",
-    collection: "Iluminação",
-    price: "R$ 890",
-    description: "Vidro soprado sobre base de travertino",
-    image: img("photo-1513506003901-1e6a229e2d15"),
-    hoverImage: img("photo-1507473885765-e6ed057f782c"),
-    href: site.links.lighting,
+    slug: "conversa",
+    step: "02",
+    title: "Chame no WhatsApp",
+    description:
+      "A gente conversa sobre formato, quantidade e acabamento — sem compromisso.",
   },
   {
-    slug: "large-sculptural-vessel",
-    name: "Vaso Escultural Grande",
-    collection: "Cerâmica",
-    price: "R$ 640",
-    description: "Grés torneado à mão, esmalte fosco",
-    image: img("photo-1578749556568-bc2c40e68b61"),
-    hoverImage: img("photo-1565193566173-7a0ee3dbe261"),
-    badge: "Novo",
-    href: site.links.ceramics,
+    slug: "arte",
+    step: "03",
+    title: "Aprove a arte",
+    description:
+      "Você recebe a prévia do seu ímã e só seguimos depois do seu ok.",
   },
   {
-    slug: "everyday-serving-bowl",
-    name: "Bowl de Servir",
-    collection: "Cerâmica",
-    price: "R$ 280",
-    description: "Para o uso diário, feito para durar",
-    image: img("photo-1610701596007-11502861dcfa"),
-    hoverImage: img("photo-1578500494198-246f612d3b3d"),
-    href: site.links.ceramics,
+    slug: "entrega",
+    step: "04",
+    title: "Receba em casa",
+    description:
+      "Sua lembrança chega embalada com carinho, pronta para ganhar a geladeira.",
   },
 ];
 
+/** Grade do Instagram — trocar pelas fotos reais do perfil. */
 export const socialImages = [
-  img("photo-1618221195710-dd6b41faaea6", 600),
-  img("photo-1600210492486-724fe5c67fb0", 600),
-  img("photo-1600585154340-be6161a56a0c", 600),
-  img("photo-1586023492125-27b2c045efd7", 600),
-  img("photo-1602028915047-37269d1a73f7", 600),
-  img("photo-1616486338812-3dadae4b4ace", 600),
+  placeholder("Post 1"),
+  placeholder("Post 2"),
+  placeholder("Post 3"),
+  placeholder("Post 4"),
+  placeholder("Post 5"),
+  placeholder("Post 6"),
 ];
 
-export const heroImage = img("photo-1618221195710-dd6b41faaea6", 2000);
-export const featuredImage = img("photo-1507473885765-e6ed057f782c", 1400);
+/** Foto de capa e retrato da Stephani — trocar por arquivos em /public. */
+export const heroImage = placeholder("Ste Sunshine");
+export const ownerImage = placeholder("Stephani Silva");

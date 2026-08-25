@@ -8,19 +8,19 @@ export function SocialFeed() {
     <section className="py-20 md:py-28">
       <div className="container-full">
         <Reveal className="text-center mb-12">
-          <p className="text-eyebrow text-primary mb-3">Siga a gente</p>
+          <p className="text-eyebrow text-primary mb-3">Siga a Ste Sunshine</p>
           <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
             {site.instagramHandle}
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto">
-            Entre para a comunidade e inspire-se com ambientes selecionados e
-            bastidores do processo.
+            Bastidores, novidades e as memórias que viraram ímã por aí. Vem ver de
+            perto.
           </p>
         </Reveal>
 
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-4">
           {socialImages.map((image, index) => (
-            <Reveal key={image} direction="scale" delay={index * 0.06} duration={0.6}>
+            <Reveal key={index} direction="scale" delay={index * 0.06} duration={0.6}>
               <a
                 href={site.instagramUrl}
                 target="_blank"

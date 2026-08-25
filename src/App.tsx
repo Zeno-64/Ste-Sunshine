@@ -1,10 +1,10 @@
-import { AboutBlock } from "@/components/AboutBlock";
-import { CollectionsGrid } from "@/components/CollectionsGrid";
-import { FeaturedCollection } from "@/components/FeaturedCollection";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { LatestProducts } from "@/components/LatestProducts";
+import { HowItWorks } from "@/components/HowItWorks";
+import { IdeasGrid } from "@/components/IdeasGrid";
+import { MissionBlock } from "@/components/MissionBlock";
+import { OwnerStory } from "@/components/OwnerStory";
 import { SocialFeed } from "@/components/SocialFeed";
 
 export default function App() {
@@ -13,10 +13,10 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <FeaturedCollection />
-        <LatestProducts />
-        <CollectionsGrid />
-        <AboutBlock />
+        <HowItWorks />
+        <IdeasGrid />
+        <OwnerStory />
+        <MissionBlock />
         <SocialFeed />
       </main>
       <Footer />

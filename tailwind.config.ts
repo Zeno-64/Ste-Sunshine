@@ -8,6 +8,8 @@ export default {
       fontFamily: {
         serif: ["Cormorant Garamond", "Georgia", "serif"],
         sans: ["Inter", "system-ui", "sans-serif"],
+        /* Assinatura manuscrita do cartao da marca ("Eternizando memorias") */
+        script: ["Great Vibes", "Cormorant Garamond", "cursive"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -36,10 +38,10 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         /* tokens da identidade */
-        terracotta: "hsl(var(--terracotta))",
-        "terracotta-light": "hsl(var(--terracotta-light))",
-        "warm-cream": "hsl(var(--warm-cream))",
-        "warm-taupe": "hsl(var(--warm-taupe))",
+        rose: "hsl(var(--rose))",
+        "rose-deep": "hsl(var(--rose-deep))",
+        "rose-soft": "hsl(var(--rose-soft))",
+        cream: "hsl(var(--cream))",
         charcoal: "hsl(var(--charcoal))",
         linen: "hsl(var(--linen))",
       },

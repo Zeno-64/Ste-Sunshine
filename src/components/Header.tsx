@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { collections } from "@/data/catalog";
+import { Menu, X } from "lucide-react";
 import { linkProps, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+/** Âncoras da página — não há catálogo com destinos próprios, tudo cai no WhatsApp. */
+const navItems = [
+  { label: "Como funciona", href: site.links.howItWorks },
+  { label: "Ideias", href: site.links.ideas },
+  { label: "Sobre", href: site.links.about },
+];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [collectionsOpen, setCollectionsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,71 +30,41 @@ export function Header() {
   }, [menuOpen]);
 
   const navLink =
-    "text-xs font-medium tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-300";
+    "text-xs font-medium tracking-[0.15em] uppercase text-white/80 hover:text-white transition-colors duration-300";
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-500 border-b",
-        scrolled
-          ? "bg-background/95 backdrop-blur-md border-border"
-          : "bg-background/80 backdrop-blur-sm border-transparent",
+        // O rosa da marca é a cor do menu superior — branco sobre rosa, como no cartão.
+        "sticky top-0 z-50 bg-rose text-white transition-shadow duration-500",
+        scrolled && "shadow-md shadow-rose/30",
       )}
     >
       <nav className="container-full">
         <div className="flex h-16 md:h-20 items-center justify-between">
           <a
             href="#top"
-            className="font-serif text-2xl md:text-3xl tracking-tight text-foreground hover:text-primary transition-colors duration-300"
+            className="font-serif text-2xl md:text-3xl tracking-[0.2em] uppercase text-white"
           >
             {site.name}
           </a>
 
           <div className="hidden md:flex items-center gap-8">
-            <div
-              className="relative"
-              onMouseEnter={() => setCollectionsOpen(true)}
-              onMouseLeave={() => setCollectionsOpen(false)}
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className={navLink}>
+                {item.label}
+              </a>
+            ))}
+            <a
+              {...linkProps(site.links.whatsapp)}
+              className="inline-flex items-center h-10 px-5 text-xs font-medium tracking-[0.15em] uppercase bg-white text-primary hover:bg-white/90 transition-colors duration-300"
             >
-              <button className={cn(navLink, "inline-flex items-center gap-1 h-10")}>
-                Coleções
-                <ChevronDown
-                  className={cn(
-                    "h-3 w-3 transition-transform duration-200",
-                    collectionsOpen && "rotate-180",
-                  )}
-                />
-              </button>
-              <div
-                className={cn(
-                  "absolute left-0 top-full w-64 bg-background border border-border shadow-lg p-2 transition-all duration-200",
-                  collectionsOpen
-                    ? "opacity-100 visible translate-y-0"
-                    : "opacity-0 invisible -translate-y-1",
-                )}
-              >
-                {collections.map((collection) => (
-                  <a
-                    key={collection.slug}
-                    {...linkProps(collection.href)}
-                    className="block px-4 py-2.5 text-sm text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-                  >
-                    {collection.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <a {...linkProps(site.links.shopAll)} className={navLink}>
-              Ver tudo
-            </a>
-            <a href="#sobre" className={navLink}>
-              Sobre
+              Fazer meu ímã
             </a>
           </div>
 
           <button
-            className="md:hidden p-2 -mr-2 text-foreground"
+            className="md:hidden p-2 -mr-2 text-white"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           >
@@ -99,35 +74,25 @@ export function Header() {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
+        <div className="md:hidden border-t border-white/20 bg-rose">
           <div className="container-full py-6 flex flex-col gap-1">
-            <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-muted-foreground/60 mb-2">
-              Coleções
-            </p>
-            {collections.map((collection) => (
+            {navItems.map((item) => (
               <a
-                key={collection.slug}
-                {...linkProps(collection.href)}
-                className="py-2.5 text-sm text-muted-foreground"
+                key={item.href}
+                href={item.href}
+                className="py-2.5 text-sm text-white/90"
                 onClick={() => setMenuOpen(false)}
               >
-                {collection.name}
+                {item.label}
               </a>
             ))}
-            <div className="h-px bg-border my-4" />
+            <div className="h-px bg-white/20 my-4" />
             <a
-              {...linkProps(site.links.shopAll)}
-              className="py-2.5 text-sm text-foreground"
+              {...linkProps(site.links.whatsapp)}
+              className="py-3 text-center text-sm bg-white text-primary"
               onClick={() => setMenuOpen(false)}
             >
-              Ver tudo
-            </a>
-            <a
-              href="#sobre"
-              className="py-2.5 text-sm text-foreground"
-              onClick={() => setMenuOpen(false)}
-            >
-              Sobre
+              Fazer meu ímã
             </a>
           </div>
         </div>
