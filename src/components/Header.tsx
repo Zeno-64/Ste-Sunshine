@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { logoImage } from "@/data/catalog";
 import { linkProps, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -42,11 +43,9 @@ export function Header() {
     >
       <nav className="container-full">
         <div className="flex h-16 md:h-20 items-center justify-between">
-          <a
-            href="#top"
-            className="font-serif text-2xl md:text-3xl tracking-[0.2em] uppercase text-white"
-          >
-            {site.name}
+          {/* Logo tem fundo próprio na cor da marca — aparece como um selo, não se funde no header. */}
+          <a href="#top" className="shrink-0">
+            <img src={logoImage} alt={site.name} className="h-11 md:h-14 w-auto" />
           </a>
 
           <div className="hidden md:flex items-center gap-8">

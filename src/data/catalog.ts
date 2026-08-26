@@ -40,7 +40,7 @@ export const occasions: Occasion[] = [
     slug: "viagens",
     name: "Viagens",
     description: "O lugar que marcou a sua história, na porta da geladeira",
-    image: placeholder("Viagens"),
+    image: "/images/ideias/viagens.jpg",
     href: whatsappFor("uma viagem"),
     span: 7,
     ratio: "16/9",
@@ -58,7 +58,7 @@ export const occasions: Occasion[] = [
     slug: "familia",
     name: "Família",
     description: "As pessoas que fazem o coração sorrir todo dia",
-    image: placeholder("Família"),
+    image: "/images/ideias/familia.jpg",
     href: whatsappFor("fotos da família"),
     span: 4,
     ratio: "3/4",
@@ -67,7 +67,7 @@ export const occasions: Occasion[] = [
     slug: "pets",
     name: "Pets",
     description: "Porque ele também faz parte das melhores memórias",
-    image: placeholder("Pets"),
+    image: "/images/ideias/pets.jpg",
     href: whatsappFor("meu pet"),
     span: 4,
     ratio: "3/4",
@@ -141,6 +141,7 @@ export const socialImages = [
   placeholder("Post 6"),
 ];
 
-/** Foto de capa e retrato da Stephani — trocar por arquivos em /public. */
-export const heroImage = placeholder("Ste Sunshine");
-export const ownerImage = placeholder("Stephani Silva");
+/** Foto de capa do hero, retrato da Stephani e a logo da marca. */
+export const heroImage = "/images/hero.jpg";
+export const ownerImage = "/images/stephani.jpg";
+export const logoImage = "/images/logo.jpg";

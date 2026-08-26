@@ -1,30 +1,26 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown, MessageCircle } from "lucide-react";
 import { ButtonLink } from "@/components/ui/button";
+import { heroImage } from "@/data/catalog";
 import { linkProps, site } from "@/lib/site";
 
-/**
- * Hero tipográfico sobre o rosa da marca — branco sobre rosa, como no cartão.
- * Sem foto de banco de imagens: quando houver foto real dos ímãs, ela entra
- * como fundo aqui e o texto ganha um gradiente escuro por cima.
- */
+/** Hero com a foto real da Stephani — o momento por trás do "eternizando memórias". */
 export function Hero() {
-  return (
-    <section
-      id="top"
-      className="relative bg-rose text-white overflow-hidden"
-    >
-      {/* Raios discretos que ecoam o sol do logo */}
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.12]"
-        style={{
-          backgroundImage:
-            "repeating-conic-gradient(from 0deg at 50% 40%, #fff 0deg 1.2deg, transparent 1.2deg 9deg)",
-        }}
-      />
+  const { scrollY } = useScroll();
+  const imageY = useTransform(scrollY, [0, 800], [0, 140]);
 
-      <div className="relative container-full min-h-[calc(100svh-4rem)] md:min-h-[calc(100svh-5rem)] flex flex-col items-center justify-center text-center py-20">
+  return (
+    <section id="top" className="relative h-[100svh] -mt-16 md:-mt-20 overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: imageY }}>
+        <img
+          src={heroImage}
+          alt="Stephani Silva, fundadora da Ste Sunshine, observando o pôr do sol"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/20 to-charcoal/10" />
+      </motion.div>
+
+      <div className="relative container-full h-full flex flex-col items-center justify-end text-center pb-20 md:pb-28 pt-16 md:pt-20">
         <motion.div
           className="max-w-3xl"
           initial={{ opacity: 0, y: 40 }}
