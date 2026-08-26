@@ -4,6 +4,21 @@ Registro de escolhas não-óbvias tomadas na adaptação do template para a Ste
 Sunshine, para não se perderem quando alguém (humano ou IA) mexer no código
 depois.
 
+## Foto do Hero — trocada por uma sem pessoa
+
+A primeira foto (`momentos.jpeg`) tinha a Stephani em silhueta escura no
+primeiro plano, tampando boa parte do pôr do sol atrás. O Kevin gostou do
+enquadramento/posição geral (foto vertical, pôr do sol sobre nuvens, texto
+ancorado embaixo com gradiente escuro) mas mandou uma segunda foto do mesmo
+lugar sem a pessoa na frente (`paisagem_capa.jpg`) — deixa o céu visível por
+inteiro. Substituída em `public/images/hero.jpg` (26/08); nenhum ajuste de
+código foi necessário, `Hero.tsx` já usa `object-cover` e a mesma posição
+serve para qualquer imagem parecida.
+
+O arquivo original tinha 1,9 MB (1536×2730px) — comprimido para ~220 KB
+mantendo a resolução, só reduzindo a qualidade JPEG (82%). Se trocar de novo,
+vale repetir essa compressão antes de commitar.
+
 ## Paleta — contraste do rosa
 
 O rosa exato da marca (`#E8828F`, cartão e logo) dá só **2,6:1** de contraste
@@ -48,12 +63,24 @@ ocupava só uma fração minúscula da imagem.
 SUNSHINE" (sem o círculo/raios do sol), com respiro vertical pequeno pra não
 pegar fragmentos dos arcos. Resultado: proporção ~8,7:1 (bem mais larga que
 alta) — por isso o `<img>` no header usa `h-7 md:h-10 w-auto` em vez de uma
-altura maior. O fundo rosa do recorte (~#E9878F) é essencialmente idêntico ao
-`--rose` da marca, então se funde no header sem borda visível.
+altura maior. O fundo rosa do recorte (~#E9878F) era essencialmente idêntico
+ao `--rose` da marca, então se fundia no header sem borda visível.
 
-Se um dia sobrar o arquivo original (emblema completo) para usar em outro
-lugar (favicon, redes sociais), ele não está mais no repo — foi sobrescrito.
-Pedir de novo pro Kevin se precisar.
+**Trocado de novo no mesmo dia:** o Kevin mandou um segundo arquivo de logo
+(`logo_topo.png`, 959×566px, já era um recorte mais próximo do emblema
+mas ainda com o círculo/raios inteiro). Mesmo recorte de texto foi aplicado
+(script Python com Pillow, mede a faixa de pixels "não-fundo" para achar as
+bordas do texto). Dessa vez o fundo do arquivo (~#D5929A) **não** batia com o
+`--rose` da marca — em vez de aceitar a borda visível, o fundo foi
+recolorido pixel a pixel para o `#E8828F` exato, preservando o branco do
+texto por proporção de distância de cor (script descartado, não fica no
+repo — se precisar reaplicar em outro arquivo de logo, o método é: amostrar
+a cor de fundo, calcular distância euclidiana de cada pixel a essa cor,
+usar como alpha entre `--rose` exato e branco).
+
+Se um dia sobrar algum arquivo original (emblema completo) para usar em
+outro lugar (favicon, redes sociais), ele não está mais no repo — foi
+sobrescrito nas duas rodadas. Pedir de novo pro Kevin se precisar.
 
 ## Decisões em aberto (não resolvidas ainda)
 
