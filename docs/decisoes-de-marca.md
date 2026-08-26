@@ -19,6 +19,45 @@ O arquivo original tinha 1,9 MB (1536×2730px) — comprimido para ~220 KB
 mantendo a resolução, só reduzindo a qualidade JPEG (82%). Se trocar de novo,
 vale repetir essa compressão antes de commitar.
 
+## Links de WhatsApp — `wa.me` no mobile, WhatsApp Web no desktop
+
+**Sintoma (26/08):** no desktop do Kevin, todo CTA de WhatsApp abria uma aba
+que se fechava sozinha logo em seguida, sem abrir nada.
+
+**Causa real, confirmada no registro do Windows:** a chave
+`HKCU:\SOFTWARE\Classes\whatsapp` existia com o valor `URL Protocol`, mas com
+**zero subchaves** e sem `shell\open\command` — protocolo `whatsapp://`
+registrado sem nenhum app por trás (sobra de uma desinstalação; nenhum
+WhatsApp aparecia em `Get-AppxPackage`). Sequência: `wa.me` redireciona para
+`api.whatsapp.com/send/?...&app_absent=0`, essa página tenta entregar a
+conversa para o app via `whatsapp://`, o navegador consulta o Windows, vê o
+protocolo registrado e **considera a entrega bem-sucedida** (por isso nem
+aparece o diálogo "nenhum app encontrado"), nada abre, e a página fecha a aba.
+
+Não era bug do site, mas o modo de falha é silencioso e total: quem tiver
+esse registro órfão clica no **único** caminho de conversão da página e não
+acontece nada. Registro órfão assim é comum depois de desinstalar o WhatsApp
+Desktop.
+
+**Decisão:** `whatsappLink()` em `src/lib/site.ts` passou a escolher o destino
+por aparelho —
+
+- **mobile → `wa.me`**: abre o app nativo direto, melhor caminho e de onde vem
+  a maior parte do público (Instagram);
+- **desktop → `web.whatsapp.com/send`**: pula a tentativa de handoff
+  `whatsapp://` por completo, então não existe o buraco acima. A aba fica
+  aberta no WhatsApp Web.
+
+A detecção (`isMobileDevice()`) vai por ordem de confiança:
+`navigator.userAgentData.mobile` (sinal explícito, Chromium) → toque + UA de
+Mac (iPadOS moderno se declara Safari de desktop) → regex de UA como último
+recurso. Os links são montados uma vez, no load do módulo — tipo de aparelho
+não muda no meio da sessão.
+
+Verificado nos dois ramos: com UA de desktop os 19 CTAs apontam para
+`web.whatsapp.com`; emulando um Pixel 8, os mesmos 19 apontam para `wa.me`.
+As 8 mensagens pré-preenchidas por ocasião são idênticas nos dois casos.
+
 ## Paleta — contraste do rosa
 
 O rosa exato da marca (`#E8828F`, cartão e logo) dá só **2,6:1** de contraste

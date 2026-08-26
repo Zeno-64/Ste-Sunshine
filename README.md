@@ -34,6 +34,14 @@ export const WHATSAPP_NUMBER = "5511984187982"; // (11) 98418-7982
   (`#sobre`, `#ideias`, `#como-funciona`) na própria página.
 - `name`, `owner`, `tagline`, `phoneLabel`, `instagramHandle`, `instagramUrl`.
 
+O destino do link **muda conforme o aparelho**: mobile vai para `wa.me` (abre o
+app direto), desktop vai para `web.whatsapp.com/send`. Não é preferência
+estética — no desktop o `wa.me` tenta entregar a conversa para o app via o
+protocolo `whatsapp://`, e em máquinas onde esse protocolo está registrado sem
+app por trás a aba se fecha sozinha sem abrir nada. Detalhes em
+[`docs/decisoes-de-marca.md`](docs/decisoes-de-marca.md). Ao mexer nos CTAs,
+não colapse os dois casos de volta num link só.
+
 ### Conteúdo das seções — `src/data/catalog.ts`
 
 - `occasions` — a grade "O que vira ímã". `span` define quantas das 12 colunas a

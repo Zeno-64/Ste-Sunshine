@@ -5,11 +5,50 @@
  * Todo CTA de compra/orçamento sai daqui e cai no WhatsApp da Stephani.
  */
 
-/** (11) 98418-7982 — formato internacional, sem símbolos, para o wa.me */
+/** (11) 98418-7982 — formato internacional, sem símbolos */
 export const WHATSAPP_NUMBER = "5511984187982";
 
-const whatsappLink = (message: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+/**
+ * Detecta se o visitante está num aparelho móvel.
+ *
+ * Ordem de confiança: `userAgentData.mobile` (sinal explícito do navegador,
+ * Chromium) → toque + UA de Mac (iPadOS moderno mente e se diz Safari de
+ * desktop) → regex de UA como último recurso.
+ */
+function isMobileDevice() {
+  if (typeof navigator === "undefined") return false;
+
+  const uaData = (
+    navigator as Navigator & { userAgentData?: { mobile?: boolean } }
+  ).userAgentData;
+  if (typeof uaData?.mobile === "boolean") return uaData.mobile;
+
+  const ua = navigator.userAgent;
+  if (navigator.maxTouchPoints > 1 && /Macintosh/.test(ua)) return true;
+
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(ua);
+}
+
+/**
+ * Monta o link do CTA conforme o aparelho.
+ *
+ * **Mobile → `wa.me`**: abre o app direto, que é o caminho nativo e de onde
+ * vem a maior parte do público (Instagram).
+ *
+ * **Desktop → `web.whatsapp.com/send`**: vai direto para o WhatsApp Web, sem
+ * passar pela tentativa de handoff `whatsapp://` para o app instalado. Essa
+ * tentativa é o ponto de falha: em máquinas com o protocolo `whatsapp://`
+ * registrado mas sem app por trás (sobra comum de uma desinstalação), o
+ * navegador considera a entrega bem-sucedida, nada abre e a aba se fecha
+ * sozinha — o visitante clica no único CTA de venda do site e não acontece
+ * nada. Ver docs/decisoes-de-marca.md.
+ */
+const whatsappLink = (message: string) => {
+  const text = encodeURIComponent(message);
+  return isMobileDevice()
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
+    : `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${text}`;
+};
 
 /** Cada CTA leva uma mensagem já preenchida, para a conversa começar com contexto. */
 export const SHOP_URL = whatsappLink(
