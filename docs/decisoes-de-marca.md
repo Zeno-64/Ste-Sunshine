@@ -10,16 +10,20 @@ O rosa exato da marca (`#E8828F`, cartão e logo) dá só **2,6:1** de contraste
 com texto branco — reprova WCAG AA mesmo para texto grande (mínimo 3:1; texto
 pequeno precisa de 4,5:1).
 
-**Decisão:** o menu superior (`Header.tsx`) usa uma versão escurecida do rosa,
-`--rose-header: 350 49% 53%` (`#C24C60`, ~4,7:1 com branco), só para os links
-de navegação passarem em acessibilidade. O resto do site (Hero, Missão) mantém
-o `--rose` original (`#E8828F`) mesmo com contraste mais baixo, porque ali o
-texto é grande/decorativo e a fidelidade à cor da marca pesou mais que o
-acessibilidade estrita.
+**Decisão original (24/08):** o menu superior (`Header.tsx`) usava uma versão
+escurecida do rosa, `--rose-header: 350 49% 53%` (`#C24C60`, ~4,7:1 com
+branco), só para os links de navegação passarem em acessibilidade.
 
-Se o contraste do Hero/Missão incomodar depois, a correção é a mesma: criar
-outra variável escurecida e trocar só o `bg-rose` daquelas seções — não mexer
-no `--rose` global, que é a cor de referência da marca.
+**Revertida em 26/08, a pedido do Kevin:** o header voltou ao `--rose` exato
+(`#E8828F`). Motivo dado: agora que o Hero usa foto real de fundo (em vez do
+rosa sólido), o contexto visual mudou e a fidelidade total à cor da marca no
+topo pesou mais do que o contraste. `--rose-header` continua definido em
+`src/index.css` (não foi apagado) caso precise voltar — é só trocar
+`bg-rose` por `bg-rose-header` em `Header.tsx`. **Nota:** o menu com o rosa
+exato ainda reprova WCAG AA para o texto branco pequeno da navegação; ciente
+e aceito pelo Kevin.
+
+Hero e Missão sempre usaram o `--rose` original — nisso nada mudou.
 
 ## Tipografia
 
@@ -32,6 +36,24 @@ manuscrita "Eternizando memórias" / "Seja bem-vindo(a) ao meu sonho", imitando
 o efeito do cartão de contato. Revisar se, depois de ver o site pronto, a
 combinação parecer genérica demais — trocar os títulos por uma sans tipo
 Jost/Montserrat Light aproximaria mais do logo.
+
+## Logo — recorte do arquivo original
+
+O arquivo enviado (`public/images/logo.jpg`) era o emblema completo (sol +
+"STE SUNSHINE", 2694×1568px) com muita margem rosa ao redor. Comprimido nos
+~30-40px de altura do header, o emblema inteiro ficava ilegível — o texto
+ocupava só uma fração minúscula da imagem.
+
+**Decisão (26/08):** recortado para conter só a faixa de texto "STE
+SUNSHINE" (sem o círculo/raios do sol), com respiro vertical pequeno pra não
+pegar fragmentos dos arcos. Resultado: proporção ~8,7:1 (bem mais larga que
+alta) — por isso o `<img>` no header usa `h-7 md:h-10 w-auto` em vez de uma
+altura maior. O fundo rosa do recorte (~#E9878F) é essencialmente idêntico ao
+`--rose` da marca, então se funde no header sem borda visível.
+
+Se um dia sobrar o arquivo original (emblema completo) para usar em outro
+lugar (favicon, redes sociais), ele não está mais no repo — foi sobrescrito.
+Pedir de novo pro Kevin se precisar.
 
 ## Decisões em aberto (não resolvidas ainda)
 

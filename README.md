@@ -101,8 +101,6 @@ funciona se precisar de mais peças de UI.
 - Já têm foto real: hero, retrato da Stephani, Viagens, Família e Pets
   (`public/images/`). Faltam fotos de **Datas especiais**, **Conquistas**,
   **Lembrancinhas** e os 6 posts do feed do Instagram — hoje em `placeholder()`.
-- `public/images/logo.jpg` tem 1,7 MB; vale comprimir antes de publicar (o
-  arquivo tem fundo rosa próprio, sem transparência).
 - Validar com a Stephani as 6 ocasiões da grade — ver
   [`docs/decisoes-de-marca.md`](docs/decisoes-de-marca.md).
 - Definir se entra alguma referência de preço / faixa de valores.

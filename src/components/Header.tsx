@@ -36,16 +36,16 @@ export function Header() {
   return (
     <header
       className={cn(
-        // Versão escurecida do rosa da marca, só aqui: passa contraste AA com texto branco.
-        "sticky top-0 z-50 bg-rose-header text-white transition-shadow duration-500",
-        scrolled && "shadow-md shadow-rose-header/30",
+        // Rosa exato da marca — decisão revertida em 26/08, ver docs/decisoes-de-marca.md.
+        "sticky top-0 z-50 bg-rose text-white transition-shadow duration-500",
+        scrolled && "shadow-md shadow-rose/30",
       )}
     >
       <nav className="container-full">
         <div className="flex h-16 md:h-20 items-center justify-between">
-          {/* Logo tem fundo próprio na cor da marca — aparece como um selo, não se funde no header. */}
+          {/* Logo é só o nome (recortado do emblema completo) — bem mais larga que alta. */}
           <a href="#top" className="shrink-0">
-            <img src={logoImage} alt={site.name} className="h-11 md:h-14 w-auto" />
+            <img src={logoImage} alt={site.name} className="h-7 md:h-10 w-auto" />
           </a>
 
           <div className="hidden md:flex items-center gap-8">
@@ -73,7 +73,7 @@ export function Header() {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-white/20 bg-rose-header">
+        <div className="md:hidden border-t border-white/20 bg-rose">
           <div className="container-full py-6 flex flex-col gap-1">
             {navItems.map((item) => (
               <a
